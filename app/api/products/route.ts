@@ -16,7 +16,7 @@ export async function GET(): Promise<NextResponse> {
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
 	try {
-		const body: JSON = await request.json();
+		const body: Product = await request.json();
 		await dbConnect();
 		const product: HydratedDocument<Product> = await ProductModel.create(body);
 		return NextResponse.json({ success: true, data: product }, { status: 201 });

@@ -9,6 +9,7 @@
 		"format": "biome format . --write",
 		"lint": "biome lint . --write",
 		"check": "biome check .",
+		"tidy": "npm run format && npm run lint && npm run check",
 		"commit": "commit"
 	},
 	"dependencies": {
