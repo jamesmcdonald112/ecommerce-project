@@ -1,15 +1,5 @@
 import { model, Schema } from "mongoose";
-
-interface Product {
-	title: string;
-	shortDescription: string;
-	longDescription: string;
-	specs?: Record<string, string>;
-	reviews?: string[];
-	price: number;
-	images: string[];
-	slug: string;
-}
+import type { Product } from "@/app/types/product";
 
 const ProductSchema = new Schema<Product>(
 	{
@@ -55,4 +45,4 @@ const ProductSchema = new Schema<Product>(
 	{ timestamps: true },
 );
 
-export const Product = model<Product>("Product", ProductSchema);
+export const ProductModel = model<Product>("Product", ProductSchema);
