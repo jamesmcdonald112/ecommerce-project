@@ -7,6 +7,9 @@ import { toast } from "sonner";
 import type { z } from "zod";
 import { PRODUCT_LIMITS } from "@/app/features/products/config/product-field-limits";
 import { productSchema } from "@/app/features/products/schemas/product.schema";
+import ImagesFieldArray from "@/components/images-field-array";
+import ReviewsFieldArray from "@/components/reviews-field-array";
+import SpecsFieldArray from "@/components/specs-filed-array";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -30,7 +33,6 @@ import {
 	InputGroupText,
 	InputGroupTextarea,
 } from "@/components/ui/input-group";
-import SpecsFieldArray from "@/components/specs-filed-array";
 
 export default function BugReportForm() {
 	const form = useForm<z.infer<typeof productSchema>>({
@@ -77,7 +79,7 @@ export default function BugReportForm() {
 			<CardContent>
 				<form id="form-new-product" onSubmit={form.handleSubmit(onSubmit)}>
 					<FieldGroup>
-						 {/* TITLE */}
+						{/* TITLE */}
 						<Controller
 							name="title"
 							control={form.control}
@@ -173,7 +175,79 @@ export default function BugReportForm() {
 						/>
 
 						{/* SPECS */}
-						<SpecsFieldArray form={form}/>
+						<SpecsFieldArray form={form} />
+
+						{/* REVIEWS */}
+						<ReviewsFieldArray form={form} />
+
+						{/* PRICE */}
+						<Controller
+							name="price"
+							control={form.control}
+							render={({ field, fieldState }) => (
+								<Field data-invalid={fieldState.invalid}>
+									<FieldLabel htmlFor="form-new-product-price">
+										Product Price
+									</FieldLabel>
+									<div className="relative">
+										<span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none">
+											€
+										</span>
+										<Input
+											{...field}
+											id="form-new-product-price"
+											aria-invalid={fieldState.invalid}
+											placeholder="70.00"
+											autoComplete="off"
+											type="number"
+											step="0.01"
+											min="0"
+											onChange={(e) =>
+												field.onChange(parseFloat(e.target.value) || 0)
+											}
+											value={field.value || ""}
+											className="pl-7"
+										/>
+									</div>
+									<FieldDescription>
+										Enter the product price in EUR.
+									</FieldDescription>
+									{fieldState.invalid && (
+										<FieldError errors={[fieldState.error]} />
+									)}
+								</Field>
+							)}
+						/>
+
+						{/* IMAGES */}
+						<ImagesFieldArray form={form} />
+
+						{/* SLUG */}
+						<Controller
+							name="slug"
+							control={form.control}
+							render={({ field, fieldState }) => (
+								<Field data-invalid={fieldState.invalid}>
+									<FieldLabel htmlFor="form-new-product-slug">
+										Product Slug
+									</FieldLabel>
+									<Input
+										{...field}
+										id="form-new-product-slug"
+										aria-invalid={fieldState.invalid}
+										placeholder="running-shoes-mens"
+										autoComplete="off"
+									/>
+									<FieldDescription>
+										URL-friendly identifier for the product (lowercase, hyphens
+										only).
+									</FieldDescription>
+									{fieldState.invalid && (
+										<FieldError errors={[fieldState.error]} />
+									)}
+								</Field>
+							)}
+						/>
 					</FieldGroup>
 				</form>
 			</CardContent>

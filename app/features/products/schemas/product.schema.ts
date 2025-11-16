@@ -24,18 +24,26 @@ export const productSchema = z.object({
 			`Max ${PRODUCT_LIMITS.longDescription} characters for long descriptions`,
 		),
 	specs: z.record(z.string(), z.string()),
-	reviews: z.array(z.string()),
-	price: z.number().nonnegative("Price must be positive"),
-	images: z
-		.array(z.string().url("Invalid image URL"))
-		.min(1, "At least one image is required"),
-	slug: z.string().min(1, "Slug is required"),
 	specRows: z.array(
 		z.object({
 			key: z.string().min(1, "Key is required"),
 			value: z.string().min(1, "Value is required"),
 		}),
 	),
+	reviews: z.array(
+		z
+			.string()
+			.min(1, "Review cannot be empty")
+			.max(
+				PRODUCT_LIMITS.review,
+				`Max ${PRODUCT_LIMITS.review} characters per review`,
+			),
+	),
+	price: z.number().nonnegative("Price must be positive"),
+	images: z
+		.array(z.string().url("Invalid image URL"))
+		.min(1, "At least one image is required"),
+	slug: z.string().min(1, "Slug is required"),
 });
 
 export type Product = z.infer<typeof productSchema>;
