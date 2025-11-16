@@ -1,8 +1,9 @@
 import { type UseFormReturn, useFieldArray } from "react-hook-form";
 import type { z } from "zod";
+
 import type { productSchema } from "@/app/features/products/schemas/product.schema";
+import { Button } from "@/components/ui/button";
 import KeyValueRow from "./key-value-row";
-import { Button } from "./ui/button";
 
 interface SpecsFieldArrayProps {
 	form: UseFormReturn<z.infer<typeof productSchema>>;
