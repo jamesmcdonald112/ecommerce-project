@@ -26,9 +26,7 @@ export default function TitleField({ form }: TitleFieldProps) {
 						placeholder="Running Shoes - Men's"
 						autoComplete="off"
 					/>
-					{fieldState.invalid && (
-						<FieldError errors={[fieldState.error]} />
-					)}
+					{fieldState.invalid && <FieldError errors={[fieldState.error]} />}
 				</Field>
 			)}
 		/>

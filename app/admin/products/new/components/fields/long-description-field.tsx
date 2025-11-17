@@ -3,7 +3,12 @@ import type { z } from "zod";
 
 import { PRODUCT_LIMITS } from "@/app/features/products/config/product-field-limits";
 import type { productSchema } from "@/app/features/products/schemas/product.schema";
-import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
+import {
+	Field,
+	FieldDescription,
+	FieldError,
+	FieldLabel,
+} from "@/components/ui/field";
 import {
 	InputGroup,
 	InputGroupAddon,
@@ -38,8 +43,7 @@ export default function LongDescriptionField({
 						/>
 						<InputGroupAddon align="block-end">
 							<InputGroupText className="tabular-nums">
-								{field.value.length}/{PRODUCT_LIMITS.longDescription}{" "}
-								characters
+								{field.value.length}/{PRODUCT_LIMITS.longDescription} characters
 							</InputGroupText>
 						</InputGroupAddon>
 					</InputGroup>
@@ -48,9 +52,7 @@ export default function LongDescriptionField({
 						performance, use cases, and anything a customer needs to make a
 						decision.
 					</FieldDescription>
-					{fieldState.invalid && (
-						<FieldError errors={[fieldState.error]} />
-					)}
+					{fieldState.invalid && <FieldError errors={[fieldState.error]} />}
 				</Field>
 			)}
 		/>

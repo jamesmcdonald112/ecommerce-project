@@ -2,7 +2,12 @@ import { Controller, type UseFormReturn } from "react-hook-form";
 import type { z } from "zod";
 
 import type { productSchema } from "@/app/features/products/schemas/product.schema";
-import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
+import {
+	Field,
+	FieldDescription,
+	FieldError,
+	FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
 interface PriceFieldProps {
@@ -32,19 +37,13 @@ export default function PriceField({ form }: PriceFieldProps) {
 							type="number"
 							step="0.01"
 							min="0"
-							onChange={(e) =>
-								field.onChange(parseFloat(e.target.value) || 0)
-							}
+							onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
 							value={field.value || ""}
 							className="pl-7"
 						/>
 					</div>
-					<FieldDescription>
-						Enter the product price in EUR.
-					</FieldDescription>
-					{fieldState.invalid && (
-						<FieldError errors={[fieldState.error]} />
-					)}
+					<FieldDescription>Enter the product price in EUR.</FieldDescription>
+					{fieldState.invalid && <FieldError errors={[fieldState.error]} />}
 				</Field>
 			)}
 		/>

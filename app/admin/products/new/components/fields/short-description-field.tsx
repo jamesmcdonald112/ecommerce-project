@@ -3,7 +3,12 @@ import type { z } from "zod";
 
 import { PRODUCT_LIMITS } from "@/app/features/products/config/product-field-limits";
 import type { productSchema } from "@/app/features/products/schemas/product.schema";
-import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
+import {
+	Field,
+	FieldDescription,
+	FieldError,
+	FieldLabel,
+} from "@/components/ui/field";
 import {
 	InputGroup,
 	InputGroupAddon,
@@ -46,9 +51,7 @@ export default function ShortDescriptionField({
 					<FieldDescription>
 						Write a 1–2 sentence summary of the product.
 					</FieldDescription>
-					{fieldState.invalid && (
-						<FieldError errors={[fieldState.error]} />
-					)}
+					{fieldState.invalid && <FieldError errors={[fieldState.error]} />}
 				</Field>
 			)}
 		/>
