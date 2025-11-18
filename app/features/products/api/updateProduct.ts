@@ -10,7 +10,9 @@ export async function updateProduct(
 	await dbConnect();
 
 	// Convert specs object to Map if present, since Mongoose stores it as a Map
-	const processedUpdates = { ...updates } as unknown as { specs?: Map<string, string> };
+	const processedUpdates = { ...updates } as unknown as {
+		specs?: Map<string, string>;
+	};
 	if (processedUpdates.specs && !(processedUpdates.specs instanceof Map)) {
 		processedUpdates.specs = toSpecMap(updates.specs as Record<string, string>);
 	}
