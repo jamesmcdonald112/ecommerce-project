@@ -15,3 +15,16 @@ export function convertSpecRowsToSpecs(
 		{} as Record<string, string>,
 	);
 }
+
+/**
+ * Transforms a specs object into an array of spec rows
+ * Used to convert database specs back to form format
+ */
+export function convertSpecsToSpecRows(
+	specs: Record<string, string>,
+): Array<{ key: string; value: string }> {
+	return Object.entries(specs).map(([key, value]) => ({
+		key,
+		value,
+	}));
+}

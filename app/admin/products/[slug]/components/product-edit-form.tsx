@@ -7,7 +7,7 @@ import PriceField from "@/app/admin/products/components/fields/price-field";
 import ShortDescriptionField from "@/app/admin/products/components/fields/short-description-field";
 import SlugField from "@/app/admin/products/components/fields/slug-field";
 import TitleField from "@/app/admin/products/components/fields/title-field";
-import { useProductFormSubmit } from "@/app/admin/products/components/hooks/useProductFormSubmit";
+import { useProductEditFormSubmit } from "@/app/admin/products/components/hooks/useProductEditFormSubmit";
 import {
 	type Product,
 	productSchema,
@@ -18,24 +18,21 @@ import SpecsFieldArray from "@/components/form-fields/specs-field-array";
 import { Button } from "@/components/ui/button";
 import { FieldGroup } from "@/components/ui/field";
 
-export default function ProductForm() {
+interface ProductEditFormProps {
+	initialData: Product;
+	slug: string;
+}
+
+export default function ProductEditForm({
+	initialData,
+	slug,
+}: ProductEditFormProps) {
 	const form = useForm<Product>({
 		resolver: zodResolver(productSchema),
-		mode: "onBlur",
-		defaultValues: {
-			title: "",
-			shortDescription: "",
-			longDescription: "",
-			specs: {},
-			specRows: [],
-			reviews: [],
-			price: 0,
-			images: [],
-			slug: "",
-		},
+		defaultValues: initialData,
 	});
 
-	const onSubmit = useProductFormSubmit(form.reset);
+	const onSubmit = useProductEditFormSubmit(slug);
 
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)}>
@@ -51,10 +48,14 @@ export default function ProductForm() {
 			</FieldGroup>
 
 			<div className="flex gap-2 justify-end mt-6">
-				<Button type="button" variant="outline" onClick={() => form.reset()}>
+				<Button
+					type="button"
+					variant="outline"
+					onClick={() => form.reset(initialData)}
+				>
 					Reset
 				</Button>
-				<Button type="submit">Submit</Button>
+				<Button type="submit">Update Product</Button>
 			</div>
 		</form>
 	);

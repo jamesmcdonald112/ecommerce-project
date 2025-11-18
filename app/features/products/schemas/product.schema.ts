@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { PRODUCT_LIMITS } from "../config/product-field-limits";
+import { PRODUCT_LIMITS } from "@/app/config/product-field-limits";
 
 export const productSchema = z.object({
 	title: z
@@ -45,5 +45,7 @@ export const productSchema = z.object({
 		.min(1, "At least one image is required"),
 	slug: z.string().min(1, "Slug is required"),
 });
+
+export const updateProductSchema = productSchema.omit({ specRows: true });
 
 export type Product = z.infer<typeof productSchema>;
