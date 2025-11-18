@@ -11,9 +11,10 @@ interface ProductRouteParams {
 	params: Promise<{ slug: string }>;
 }
 
-export async function GET({
-	params,
-}: ProductRouteParams): Promise<NextResponse> {
+export async function GET(
+	_request: NextRequest,
+	{ params }: ProductRouteParams,
+): Promise<NextResponse> {
 	try {
 		const { slug } = await params;
 
