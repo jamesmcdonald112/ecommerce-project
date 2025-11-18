@@ -2,7 +2,12 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-
+import LongDescriptionField from "@/app/admin/products/components/fields/long-description-field";
+import PriceField from "@/app/admin/products/components/fields/price-field";
+import ShortDescriptionField from "@/app/admin/products/components/fields/short-description-field";
+import SlugField from "@/app/admin/products/components/fields/slug-field";
+import TitleField from "@/app/admin/products/components/fields/title-field";
+import { useProductFormSubmit } from "@/app/admin/products/components/hooks/useProductFormSubmit";
 import {
 	type Product,
 	productSchema,
@@ -12,12 +17,6 @@ import ReviewsFieldArray from "@/components/form-fields/reviews-field-array";
 import SpecsFieldArray from "@/components/form-fields/specs-field-array";
 import { Button } from "@/components/ui/button";
 import { FieldGroup } from "@/components/ui/field";
-import LongDescriptionField from "./fields/long-description-field";
-import PriceField from "./fields/price-field";
-import ShortDescriptionField from "./fields/short-description-field";
-import SlugField from "./fields/slug-field";
-import TitleField from "./fields/title-field";
-import { useProductFormSubmit } from "./hooks/useProductFormSubmit";
 
 export default function ProductForm() {
 	const form = useForm<Product>({
