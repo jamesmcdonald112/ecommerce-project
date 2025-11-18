@@ -13,7 +13,7 @@ export function formatProductPayload(formData: Product): Omit<
 } {
 	const specs = convertSpecRowsToSpecs(formData.specRows);
 
-	const { ...rest } = formData;
+	const { specRows: _removed, ...rest } = formData;
 
 	return {
 		...rest,
