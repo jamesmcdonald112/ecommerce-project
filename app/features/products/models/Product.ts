@@ -1,23 +1,32 @@
 import mongoose, { model, Schema } from "mongoose";
-import type { Product } from "@/app/features/products/types/product";
 import { PRODUCT_LIMITS } from "@/app/config/product-field-limits";
+import type { Product } from "@/app/features/products/types/product";
 
 const ProductSchema = new Schema<Product>(
 	{
 		title: {
 			type: String,
 			required: [true, "Please provide a title for this product"],
-			maxLength: [PRODUCT_LIMITS.title, `Title cannot exceed ${PRODUCT_LIMITS.title} characters`],
+			maxLength: [
+				PRODUCT_LIMITS.title,
+				`Title cannot exceed ${PRODUCT_LIMITS.title} characters`,
+			],
 		},
 		shortDescription: {
 			type: String,
 			required: [true, "Please provide a short description"],
-			maxLength: [PRODUCT_LIMITS.shortDescription, `Short description cannot exceed ${PRODUCT_LIMITS.shortDescription} characters`],
+			maxLength: [
+				PRODUCT_LIMITS.shortDescription,
+				`Short description cannot exceed ${PRODUCT_LIMITS.shortDescription} characters`,
+			],
 		},
 		longDescription: {
 			type: String,
 			required: [true, "Please provide a detailed description"],
-			maxLength: [PRODUCT_LIMITS.longDescription, `Long description cannot exceed ${PRODUCT_LIMITS.longDescription}} characters`],
+			maxLength: [
+				PRODUCT_LIMITS.longDescription,
+				`Long description cannot exceed ${PRODUCT_LIMITS.longDescription}} characters`,
+			],
 		},
 		specs: {
 			type: Map,
