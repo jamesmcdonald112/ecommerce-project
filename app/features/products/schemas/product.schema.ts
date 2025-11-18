@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { PRODUCT_LIMITS } from "../config/product-field-limits";
+import { PRODUCT_LIMITS } from "@/app/config/product-field-limits";
 
 export const productSchema = z.object({
 	title: z

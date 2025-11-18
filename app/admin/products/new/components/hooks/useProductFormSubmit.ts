@@ -1,22 +1,17 @@
 import { useCallback } from "react";
 import type { UseFormReset } from "react-hook-form";
 import { toast } from "sonner";
-import type { z } from "zod";
-
-import type { productSchema } from "@/app/features/products/schemas/product.schema";
-import { formatProductPayload } from "../lib/format-product-payload";
-import type { CreateProductPayload } from "../services/product-api";
-import { createProduct } from "../services/product-api";
+import { formatProductPayload } from "@/app/features/products/lib/format-product-payload";
+import type { Product, CreateProductPayload } from "@/app/features/products/types/product";
+import { createProduct } from "@/app/features/products/services/product-api";
 
 /**
  * Custom hook for handling product form submission
  * Handles data transformation, API calls, and user feedback
  */
-export function useProductFormSubmit(
-	reset: UseFormReset<z.infer<typeof productSchema>>,
-) {
+export function useProductFormSubmit(reset: UseFormReset<Product>) {
 	const onSubmit = useCallback(
-		async (formData: z.infer<typeof productSchema>): Promise<void> => {
+		async (formData: Product): Promise<void> => {
 			try {
 				const payload = formatProductPayload(formData);
 				await createProduct(payload as CreateProductPayload);

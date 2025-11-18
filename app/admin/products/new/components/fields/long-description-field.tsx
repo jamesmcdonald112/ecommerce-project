@@ -1,7 +1,7 @@
 import { Controller, type UseFormReturn } from "react-hook-form";
 import type { z } from "zod";
 
-import { PRODUCT_LIMITS } from "@/app/features/products/config/product-field-limits";
+import { PRODUCT_LIMITS } from "@/app/config/product-field-limits";
 import type { productSchema } from "@/app/features/products/schemas/product.schema";
 import {
 	Field,

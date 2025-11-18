@@ -2,9 +2,11 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import type { z } from "zod";
 
-import { productSchema } from "@/app/features/products/schemas/product.schema";
+import {
+	type Product,
+	productSchema,
+} from "@/app/features/products/schemas/product.schema";
 import ImagesFieldArray from "@/components/form-fields/images-field-array";
 import ReviewsFieldArray from "@/components/form-fields/reviews-field-array";
 import SpecsFieldArray from "@/components/form-fields/specs-field-array";
@@ -18,7 +20,7 @@ import TitleField from "./fields/title-field";
 import { useProductFormSubmit } from "./hooks/useProductFormSubmit";
 
 export default function ProductForm() {
-	const form = useForm<z.infer<typeof productSchema>>({
+	const form = useForm<Product>({
 		resolver: zodResolver(productSchema),
 		mode: "onBlur",
 		defaultValues: {
@@ -37,7 +39,7 @@ export default function ProductForm() {
 	const onSubmit = useProductFormSubmit(form.reset);
 
 	return (
-		<form id="form-new-product" onSubmit={form.handleSubmit(onSubmit)}>
+		<form onSubmit={form.handleSubmit(onSubmit)}>
 			<FieldGroup>
 				<TitleField form={form} />
 				<ShortDescriptionField form={form} />
