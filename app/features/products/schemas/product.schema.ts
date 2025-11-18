@@ -46,4 +46,6 @@ export const productSchema = z.object({
 	slug: z.string().min(1, "Slug is required"),
 });
 
+export const updateProductSchema = productSchema.omit({ specRows: true });
+
 export type Product = z.infer<typeof productSchema>;
