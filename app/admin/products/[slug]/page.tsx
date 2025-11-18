@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getProductBySlug } from "@/app/features/products/api/getProductBySlug";
 import { convertSpecsToSpecRows } from "@/app/features/products/lib/transform-spec-rows";
-import type { Product } from "@/app/features/products/schemas/product.schema";
+import type { ProductFormData } from "@/app/features/products/schemas/product.schema";
 import {
 	Card,
 	CardContent,
@@ -35,7 +35,7 @@ export default async function EditProductPage({
 	// Convert specs object to specRows array
 	const specRows = convertSpecsToSpecRows(productObj.specs || {});
 
-	const formData: Product = {
+	const formData: ProductFormData = {
 		title: productObj.title,
 		shortDescription: productObj.shortDescription,
 		longDescription: productObj.longDescription,

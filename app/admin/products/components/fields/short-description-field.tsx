@@ -2,7 +2,7 @@ import { Controller, type UseFormReturn } from "react-hook-form";
 import type { z } from "zod";
 
 import { PRODUCT_LIMITS } from "@/app/config/product-field-limits";
-import type { productSchema } from "@/app/features/products/schemas/product.schema";
+import type { productFormSchema } from "@/app/features/products/schemas/product.schema";
 import {
 	Field,
 	FieldDescription,
@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/input-group";
 
 interface ShortDescriptionFieldProps {
-	form: UseFormReturn<z.infer<typeof productSchema>>;
+	form: UseFormReturn<z.infer<typeof productFormSchema>>;
 }
 
 export default function ShortDescriptionField({

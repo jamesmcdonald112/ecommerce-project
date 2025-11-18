@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { PRODUCT_LIMITS } from "@/app/config/product-field-limits";
 
+// Base product schema - what's stored in database
 export const productSchema = z.object({
 	title: z
 		.string()
@@ -24,12 +25,6 @@ export const productSchema = z.object({
 			`Max ${PRODUCT_LIMITS.longDescription} characters for long descriptions`,
 		),
 	specs: z.record(z.string(), z.string()),
-	specRows: z.array(
-		z.object({
-			key: z.string().min(1, "Key is required"),
-			value: z.string().min(1, "Value is required"),
-		}),
-	),
 	reviews: z.array(
 		z
 			.string()
@@ -46,6 +41,17 @@ export const productSchema = z.object({
 	slug: z.string().min(1, "Slug is required"),
 });
 
-export const updateProductSchema = productSchema.omit({ specRows: true });
+// Form schema - adds specRows for editing
+export const productFormSchema = productSchema.extend({
+	specRows: z.array(
+		z.object({
+			key: z.string().min(1, "Key is required"),
+			value: z.string().min(1, "Value is required"),
+		}),
+	),
+});
+
+export const updateProductSchema = productSchema;
 
 export type Product = z.infer<typeof productSchema>;
+export type ProductFormData = z.infer<typeof productFormSchema>;
