@@ -2,8 +2,8 @@ import { useCallback } from "react";
 import type { UseFormReset } from "react-hook-form";
 import { toast } from "sonner";
 import { formatProductPayload } from "@/app/features/products/lib/format-product-payload";
-import { createProduct } from "@/app/features/products/services/product-api";
 import type { ProductFormData } from "@/app/features/products/schemas/product.schema";
+import { createProduct } from "@/app/features/products/services/product-api";
 import type { CreateProductPayload } from "@/app/features/products/types/product";
 
 /**

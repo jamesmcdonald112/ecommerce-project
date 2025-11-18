@@ -1,4 +1,7 @@
-import type { Product, ProductFormData } from "@/app/features/products/schemas/product.schema";
+import type {
+	Product,
+	ProductFormData,
+} from "@/app/features/products/schemas/product.schema";
 import { convertSpecRowsToSpecs } from "./transform-spec-rows";
 
 /**
