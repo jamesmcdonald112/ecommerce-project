@@ -1,28 +1,106 @@
 import type { Product } from "../features/products/schemas/product.schema";
 import EmptyProductList from "./components/EmptyProductList";
-import ProductCard from "./components/ProductCard";
+import ProductsGrid from "./components/ProductsGrid";
 
 export default function ProductsPage() {
 	const dummyProducts: Product[] = [
 		{
-			title: "Noise-Cancelling Wireless Headphones",
+			title: "Wireless Studio Headphones",
 			shortDescription:
-				"Premium over-ear sound with active noise cancellation.",
+				"High-fidelity closed-back design for deep focused listening.",
 			longDescription:
-				"Experience immersive audio with these high-fidelity wireless headphones. Includes ANC, 30-hour battery, USB-C fast charging, memory-foam cushions, and Bluetooth 5.3.",
-			price: 199.99,
-			slug: "wireless-noise-cancelling-headphones",
+				"These wireless studio headphones deliver wide dynamic range, soft memory-foam pads, and a neutral response perfect for editing, mixing, and daily listening.",
+			price: 179.99,
+			slug: "wireless-studio-headphones",
 			images: [
-				"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
+				"https://images.unsplash.com/photo-1585298723682-7115561c51b7?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0",
 			],
 			specs: {
-				Brand: "AudioCore",
-				Battery: "30 hours",
+				Brand: "SoundCore",
+				Battery: "35 hours",
 				Connectivity: "Bluetooth 5.3",
-				Weight: "250g",
-				Warranty: "2 years",
+				Weight: "240g",
 			},
-			reviews: ["Amazing clarity!", "Battery lasts forever."],
+			reviews: [
+				"Absolutely amazing clarity!",
+				"Very comfortable for long sessions.",
+			],
+		},
+
+		{
+			title: "Vintage Wood Headphones",
+			shortDescription: "Retro sound with handcrafted wooden ear cups.",
+			longDescription:
+				"Handmade wooden cups paired with modern drivers give these headphones a warm analog feel. Ideal for audiophiles seeking natural resonance.",
+			price: 129.99,
+			slug: "vintage-wood-headphones",
+			images: [
+				"https://images.unsplash.com/photo-1577174881658-0f30ed549adc?q=80&w=1320&auto=format&fit=crop&ixlib=rb-4.1.0",
+			],
+			specs: {
+				Brand: "RetroTune",
+				Material: "Walnut Wood",
+				Cable: "1.8m braided",
+				Weight: "280g",
+			},
+			reviews: ["Love the retro look!", "Warm and smooth sound."],
+		},
+
+		{
+			title: "Travel-Ready Foldable Headphones",
+			shortDescription: "Compact, lightweight, and perfect for everyday carry.",
+			longDescription:
+				"These portable headphones fold into a compact shape, offer passive noise isolation, and deliver crisp audio for on-the-go listening.",
+			price: 69.99,
+			slug: "travel-foldable-headphones",
+			images: [
+				"https://images.unsplash.com/photo-1545127398-14699f92334b?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.1.0",
+			],
+			specs: {
+				Brand: "UrbanSound",
+				Battery: "20 hours",
+				Connectivity: "Bluetooth 5.0",
+				Foldable: "Yes",
+			},
+			reviews: ["Super portable!", "Perfect for my commute."],
+		},
+
+		{
+			title: "Modern Work-From-Home Headset",
+			shortDescription: "Crystal-clear microphone with long-wear comfort.",
+			longDescription:
+				"Ideal for calls, meetings, conferences, and extended remote work. Features noise-filtering mic and soft breathable ear cushions.",
+			price: 89.99,
+			slug: "modern-office-headset",
+			images: [
+				"https://images.unsplash.com/photo-1583305727488-61f82c7eae4b?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0",
+			],
+			specs: {
+				Brand: "WorkPro",
+				Microphone: "Noise-filtering",
+				Battery: "40 hours",
+				Connectivity: "Bluetooth 5.2",
+			},
+			reviews: ["Mic quality is fantastic.", "Use it daily for work."],
+		},
+
+		{
+			title: "Premium White Wireless Headphones",
+			shortDescription: "Elegant minimalist design with powerful sound.",
+			longDescription:
+				"A premium pair of white wireless headphones delivering punchy bass, great battery life, and a modern minimalist aesthetic.",
+			price: 219.99,
+			slug: "premium-white-wireless-headphones",
+			images: [
+				"https://images.unsplash.com/photo-1628116709703-c1c9ad550d36?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0",
+			],
+			specs: {
+				Brand: "LumaAudio",
+				Battery: "28 hours",
+				Connectivity: "Bluetooth 5.3",
+				Weight: "230g",
+			},
+			reviews: ["Beautiful design!", "Bass is insane."],
 		},
 	];
 
@@ -34,25 +112,7 @@ export default function ProductsPage() {
 			{!hasProducts && <EmptyProductList />}
 
 			{/* Products Grid */}
-			{hasProducts && (
-				<div className="container mx-auto px-4 py-12">
-					<h1 className="text-3xl font-bold mb-8">Products</h1>
-					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-						{dummyProducts.map(
-							({ title, images, price, shortDescription, slug }) => (
-								<ProductCard
-									key={slug}
-									title={title}
-									image={images[0]}
-									price={price}
-									shortDescription={shortDescription}
-									slug={slug}
-								/>
-							),
-						)}
-					</div>
-				</div>
-			)}
+			{hasProducts && <ProductsGrid products={dummyProducts} />}
 		</div>
 	);
 }

@@ -26,8 +26,7 @@ export default function ProductCard({
 }: ProductCardProps) {
 	return (
 		<Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
-
-      {/* IMAGE */}
+			{/* IMAGE */}
 			<div className="px-6">
 				<div className="relative w-full aspect-square overflow-hidden bg-muted rounded-lg">
 					<Image
@@ -40,7 +39,7 @@ export default function ProductCard({
 				</div>
 			</div>
 
-      {/* TEXT */}
+			{/* TEXT */}
 			<CardHeader>
 				<CardTitle className="line-clamp-2">{title}</CardTitle>
 				<CardDescription className="line-clamp-2">
@@ -48,7 +47,7 @@ export default function ProductCard({
 				</CardDescription>
 			</CardHeader>
 
-      {/* FOOTER */}
+			{/* FOOTER */}
 			<CardFooter className="flex items-center justify-between pt-0">
 				<span className="text-lg font-bold">€{price.toFixed(2)}</span>
 				<Link href={`/products/${slug}`}>
