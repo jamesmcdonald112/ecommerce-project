@@ -1,6 +1,7 @@
 import type { Product } from "../features/products/schemas/product.schema";
 import EmptyProductList from "./components/EmptyProductList";
 import ProductsGrid from "./components/ProductsGrid";
+import SearchBar from "./components/SearchBar";
 
 export default function ProductsPage() {
 	const dummyProducts: Product[] = [
@@ -111,7 +112,12 @@ export default function ProductsPage() {
 			{/* EMPTY PRODUCTS */}
 			{!hasProducts && <EmptyProductList />}
 
-			{/* Products Grid */}
+			{/* SEARCH BAR */}
+			<div className="flex justify-center mb-6">
+				<SearchBar />
+			</div>
+
+			{/* PRODUCTS GRID*/}
 			{hasProducts && <ProductsGrid products={dummyProducts} />}
 		</div>
 	);
