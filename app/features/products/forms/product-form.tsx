@@ -2,19 +2,19 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import LongDescriptionField from "@/app/admin/products/components/fields/long-description-field";
-import PriceField from "@/app/admin/products/components/fields/price-field";
-import ShortDescriptionField from "@/app/admin/products/components/fields/short-description-field";
-import SlugField from "@/app/admin/products/components/fields/slug-field";
-import TitleField from "@/app/admin/products/components/fields/title-field";
-import { useProductFormSubmit } from "@/app/admin/products/components/hooks/useProductFormSubmit";
+import LongDescriptionField from "@/app/features/products/components/fields/long-description-field";
+import PriceField from "@/app/features/products/components/fields/price-field";
+import ShortDescriptionField from "@/app/features/products/components/fields/short-description-field";
+import SlugField from "@/app/features/products/components/fields/slug-field";
+import TitleField from "@/app/features/products/components/fields/title-field";
+import ImagesFieldArray from "@/app/features/products/components/form-fields/images-field-array";
+import ReviewsFieldArray from "@/app/features/products/components/form-fields/reviews-field-array";
+import SpecsFieldArray from "@/app/features/products/components/form-fields/specs-field-array";
+import { useProductFormSubmit } from "@/app/features/products/hooks/useProductFormSubmit";
 import {
 	type ProductFormData,
 	productFormSchema,
 } from "@/app/features/products/schemas/product.schema";
-import ImagesFieldArray from "@/components/form-fields/images-field-array";
-import ReviewsFieldArray from "@/components/form-fields/reviews-field-array";
-import SpecsFieldArray from "@/components/form-fields/specs-field-array";
 import { Button } from "@/components/ui/button";
 import { FieldGroup } from "@/components/ui/field";
 

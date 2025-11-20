@@ -1,14 +1,4 @@
-export type { Product } from "@/app/features/products/schemas/product.schema";
+import type { Product as SchemaProduct } from "../schemas/product.schema";
 
-export interface CreateProductPayload {
-	title: string;
-	shortDescription: string;
-	longDescription: string;
-	price: number;
-	slug: string;
-	specs: Record<string, string>;
-	reviews: string[];
-	images: string[];
-}
-
-export type UpdateProductPayload = CreateProductPayload;
+// Re-export Product so the rest of the app can import from here
+export type Product = SchemaProduct;

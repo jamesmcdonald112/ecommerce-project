@@ -1,9 +1,9 @@
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { toast } from "sonner";
-import { formatProductPayload } from "@/app/features/products/lib/format-product-payload";
 import type { ProductFormData } from "@/app/features/products/schemas/product.schema";
 import { updateProduct } from "@/app/features/products/services/product-api";
+import { formatProductPayload } from "@/app/features/products/utils/format-product-payload";
 
 /**
  * Custom hook for handling product edit form submission

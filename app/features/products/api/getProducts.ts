@@ -1,6 +1,6 @@
 import dbConnect from "@/app/lib/mongodb";
-import { ProductModel } from "../models/Product";
 import type { Product } from "../schemas/product.schema";
+import { ProductModel } from "./models/Product";
 
 export async function getAllProducts(): Promise<Product[]> {
 	await dbConnect();

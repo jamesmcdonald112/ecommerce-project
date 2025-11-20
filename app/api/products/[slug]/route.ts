@@ -3,7 +3,10 @@ import { type NextRequest, NextResponse } from "next/server";
 import z, { ZodError } from "zod";
 import { getProductBySlug } from "@/app/features/products/api/getProductBySlug";
 import { validateAndUpdateProduct } from "@/app/features/products/api/validateAndUpdateProduct";
-import { BadRequestError, NotFoundError } from "@/app/features/products/errors";
+import {
+	BadRequestError,
+	NotFoundError,
+} from "@/app/features/products/errors/errors";
 import { updateProductSchema } from "@/app/features/products/schemas/product.schema";
 import type { Product } from "@/app/features/products/types/product";
 

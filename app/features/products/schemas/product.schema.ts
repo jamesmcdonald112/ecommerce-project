@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { PRODUCT_LIMITS } from "@/app/config/product-field-limits";
+import { PRODUCT_LIMITS } from "@/config/product-field-limits";
 
 // Base product schema - what's stored in database
 export const productSchema = z.object({

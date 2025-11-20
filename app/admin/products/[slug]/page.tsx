@@ -1,7 +1,12 @@
+import type { HydratedDocument } from "mongoose";
 import { notFound } from "next/navigation";
 import { getProductBySlug } from "@/app/features/products/api/getProductBySlug";
-import { convertSpecsToSpecRows } from "@/app/features/products/lib/transform-spec-rows";
-import type { ProductFormData } from "@/app/features/products/schemas/product.schema";
+import type {
+	Product,
+	ProductFormData,
+} from "@/app/features/products/schemas/product.schema";
+import { mapToObject } from "@/app/features/products/utils/map-to-object";
+import { convertSpecsToSpecRows } from "@/app/features/products/utils/transform-spec-rows";
 import {
 	Card,
 	CardContent,
@@ -9,7 +14,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import ProductEditForm from "./components/product-edit-form";
+import ProductEditForm from "../../../features/products/forms/product-edit-form";
 
 interface EditProductPageProps {
 	params: Promise<{ slug: string }>;
@@ -20,7 +25,8 @@ export default async function EditProductPage({
 }: EditProductPageProps) {
 	const { slug } = await params;
 
-	const product = await getProductBySlug(slug);
+	const product: HydratedDocument<Product> | null =
+		await getProductBySlug(slug);
 
 	// 404 page
 	if (!product) {
@@ -31,9 +37,11 @@ export default async function EditProductPage({
 	// This is necessary because Mongoose documents contain non-serializable properties
 	const productObj = product.toObject();
 
-	// Convert the product data to form format
-	// Convert specs object to specRows array
-	const specRows = convertSpecsToSpecRows(productObj.specs || {});
+	// Mongoose Map - plain object (required for serialization and form fields)
+	const rawSpecs = mapToObject<string>(productObj.specs);
+
+	// Convert specs to form-friendly rows
+	const specRows = convertSpecsToSpecRows(rawSpecs);
 
 	const formData: ProductFormData = {
 		title: productObj.title,
@@ -41,10 +49,7 @@ export default async function EditProductPage({
 		longDescription: productObj.longDescription,
 		price: productObj.price,
 		slug: productObj.slug,
-		specs:
-			productObj.specs instanceof Map
-				? Object.fromEntries(productObj.specs)
-				: productObj.specs || {},
+		specs: rawSpecs,
 		specRows, // converted above
 		reviews: productObj.reviews || [],
 		images: productObj.images || [],

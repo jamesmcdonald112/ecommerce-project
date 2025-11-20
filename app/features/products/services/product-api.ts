@@ -1,12 +1,12 @@
-import type {
-	CreateProductPayload,
-	UpdateProductPayload,
-} from "@/app/features/products/types/product";
-
 /**
  * API client for product operations
  * Handles both creation and updates of products
  */
+
+import type {
+	CreateProductPayload,
+	UpdateProductPayload,
+} from "../types/product-payloads";
 
 /**
  * Creates a new product via API
