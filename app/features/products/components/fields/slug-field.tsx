@@ -1,7 +1,7 @@
 import { Controller, type UseFormReturn } from "react-hook-form";
 import type { z } from "zod";
 
-import type { productSchema } from "@/app/features/products/schemas/product.schema";
+import type { productFormSchema } from "@/app/features/products/schemas/product.schema";
 import {
 	Field,
 	FieldDescription,
@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 interface SlugFieldProps {
-	form: UseFormReturn<z.infer<typeof productSchema>>;
+	form: UseFormReturn<z.infer<typeof productFormSchema>>;
 }
 
 export default function SlugField({ form }: SlugFieldProps) {

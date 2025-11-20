@@ -5,7 +5,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import ProductForm from "./components/product-form";
+import ProductForm from "../../../features/products/forms/product-form";
 
 export default function CreateProductPage() {
 	return (

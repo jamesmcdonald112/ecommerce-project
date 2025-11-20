@@ -1,7 +1,7 @@
 import type { HydratedDocument } from "mongoose";
 import dbConnect from "@/app/lib/mongodb";
-import { ProductModel } from "../models/Product";
 import type { Product } from "../schemas/product.schema";
+import { ProductModel } from "./models/Product";
 
 export async function updateProduct(
 	slug: string,

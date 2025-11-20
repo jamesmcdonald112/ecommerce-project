@@ -1,8 +1,6 @@
 import { Controller, type UseFormReturn } from "react-hook-form";
 import type { z } from "zod";
-
-import { PRODUCT_LIMITS } from "@/app/config/product-field-limits";
-import type { productSchema } from "@/app/features/products/schemas/product.schema";
+import type { productFormSchema } from "@/app/features/products/schemas/product.schema";
 import {
 	Field,
 	FieldDescription,
@@ -15,41 +13,43 @@ import {
 	InputGroupText,
 	InputGroupTextarea,
 } from "@/components/ui/input-group";
+import { PRODUCT_LIMITS } from "@/config/product-field-limits";
 
-interface ShortDescriptionFieldProps {
-	form: UseFormReturn<z.infer<typeof productSchema>>;
+interface LongDescriptionFieldProps {
+	form: UseFormReturn<z.infer<typeof productFormSchema>>;
 }
 
-export default function ShortDescriptionField({
+export default function LongDescriptionField({
 	form,
-}: ShortDescriptionFieldProps) {
+}: LongDescriptionFieldProps) {
 	return (
 		<Controller
-			name="shortDescription"
+			name="longDescription"
 			control={form.control}
 			render={({ field, fieldState }) => (
 				<Field data-invalid={fieldState.invalid}>
-					<FieldLabel htmlFor="form-new-product-short-description">
-						Short Description
+					<FieldLabel htmlFor="form-new-product-long-description">
+						Long Description
 					</FieldLabel>
 					<InputGroup>
 						<InputGroupTextarea
 							{...field}
-							id="form-new-product-short-description"
+							id="form-new-product-long-description"
 							placeholder="Lightweight running shoes designed for daily training"
-							rows={3}
+							rows={6}
 							className="min-h-24 resize-none"
 							aria-invalid={fieldState.invalid}
 						/>
 						<InputGroupAddon align="block-end">
 							<InputGroupText className="tabular-nums">
-								{field.value.length}/{PRODUCT_LIMITS.shortDescription}{" "}
-								characters
+								{field.value.length}/{PRODUCT_LIMITS.longDescription} characters
 							</InputGroupText>
 						</InputGroupAddon>
 					</InputGroup>
 					<FieldDescription>
-						Write a 1–2 sentence summary of the product.
+						Describe the product in detail: features, materials, sizing,
+						performance, use cases, and anything a customer needs to make a
+						decision.
 					</FieldDescription>
 					{fieldState.invalid && <FieldError errors={[fieldState.error]} />}
 				</Field>

@@ -2,13 +2,16 @@ import type { HydratedDocument } from "mongoose";
 import { type NextRequest, NextResponse } from "next/server";
 import z, { ZodError } from "zod";
 import { createProduct } from "@/app/features/products/api/createProduct";
-import { getAllProducts } from "@/app/features/products/api/getProducts";
+import { getProductsBySearch } from "@/app/features/products/api/getProducts";
 import { productSchema } from "@/app/features/products/schemas/product.schema";
 import type { Product } from "@/app/features/products/types/product";
 
-export async function GET(): Promise<NextResponse> {
+export async function GET(request: NextRequest): Promise<NextResponse> {
 	try {
-		const products: Product[] = await getAllProducts();
+		const searchParams = request.nextUrl.searchParams;
+		const query: string = searchParams.get("q") || "";
+
+		const products: Product[] = await getProductsBySearch(query);
 		return NextResponse.json({ success: true, data: products });
 	} catch (error: unknown) {
 		return handleError(error);

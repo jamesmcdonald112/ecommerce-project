@@ -1,10 +1,9 @@
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { toast } from "sonner";
-import { formatProductPayload } from "@/app/features/products/lib/format-product-payload";
-import type { Product } from "@/app/features/products/schemas/product.schema";
+import type { ProductFormData } from "@/app/features/products/schemas/product.schema";
 import { updateProduct } from "@/app/features/products/services/product-api";
-import type { UpdateProductPayload } from "@/app/features/products/types/product";
+import { formatProductPayload } from "@/app/features/products/utils/format-product-payload";
 
 /**
  * Custom hook for handling product edit form submission
@@ -14,9 +13,9 @@ export function useProductEditFormSubmit(slug: string) {
 	const router = useRouter();
 
 	const onSubmit = useCallback(
-		async (formData: Product): Promise<void> => {
+		async (formData: ProductFormData): Promise<void> => {
 			try {
-				const payload: UpdateProductPayload = formatProductPayload(formData);
+				const payload = formatProductPayload(formData);
 
 				await updateProduct(slug, payload);
 

@@ -2,24 +2,24 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import LongDescriptionField from "@/app/admin/products/components/fields/long-description-field";
-import PriceField from "@/app/admin/products/components/fields/price-field";
-import ShortDescriptionField from "@/app/admin/products/components/fields/short-description-field";
-import SlugField from "@/app/admin/products/components/fields/slug-field";
-import TitleField from "@/app/admin/products/components/fields/title-field";
-import { useProductEditFormSubmit } from "@/app/admin/products/components/hooks/useProductEditFormSubmit";
+import LongDescriptionField from "@/app/features/products/components/fields/long-description-field";
+import PriceField from "@/app/features/products/components/fields/price-field";
+import ShortDescriptionField from "@/app/features/products/components/fields/short-description-field";
+import SlugField from "@/app/features/products/components/fields/slug-field";
+import TitleField from "@/app/features/products/components/fields/title-field";
+import ImagesFieldArray from "@/app/features/products/components/form-fields/images-field-array";
+import ReviewsFieldArray from "@/app/features/products/components/form-fields/reviews-field-array";
+import SpecsFieldArray from "@/app/features/products/components/form-fields/specs-field-array";
+import { useProductEditFormSubmit } from "@/app/features/products/hooks/useProductEditFormSubmit";
 import {
-	type Product,
-	productSchema,
+	type ProductFormData,
+	productFormSchema,
 } from "@/app/features/products/schemas/product.schema";
-import ImagesFieldArray from "@/components/form-fields/images-field-array";
-import ReviewsFieldArray from "@/components/form-fields/reviews-field-array";
-import SpecsFieldArray from "@/components/form-fields/specs-field-array";
 import { Button } from "@/components/ui/button";
 import { FieldGroup } from "@/components/ui/field";
 
 interface ProductEditFormProps {
-	initialData: Product;
+	initialData: ProductFormData;
 	slug: string;
 }
 
@@ -27,8 +27,8 @@ export default function ProductEditForm({
 	initialData,
 	slug,
 }: ProductEditFormProps) {
-	const form = useForm<Product>({
-		resolver: zodResolver(productSchema),
+	const form = useForm<ProductFormData>({
+		resolver: zodResolver(productFormSchema),
 		defaultValues: initialData,
 	});
 

@@ -1,13 +1,12 @@
 import { Controller, type UseFormReturn, useFieldArray } from "react-hook-form";
-import type { z } from "zod";
 
-import type { productSchema } from "@/app/features/products/schemas/product.schema";
+import type { ProductFormData } from "@/app/features/products/schemas/product.schema";
 import { Button } from "@/components/ui/button";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 
 interface ReviewsFieldArrayProps {
-	form: UseFormReturn<z.infer<typeof productSchema>>;
+	form: UseFormReturn<ProductFormData>;
 }
 
 export default function ReviewsFieldArray({ form }: ReviewsFieldArrayProps) {
