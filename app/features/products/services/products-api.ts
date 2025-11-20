@@ -20,7 +20,7 @@ export const productsApi = {
 	},
 
 	async search(query: string): Promise<ApiResult<Product[]>> {
-		const url = `${BASE_URL}?query=${encodeURIComponent(query)}`;
+		const url = `${BASE_URL}?q=${encodeURIComponent(query)}`;
 
 		const res = await fetch(url, { method: "GET" });
 

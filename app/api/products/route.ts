@@ -9,7 +9,7 @@ import type { Product } from "@/app/features/products/types/product";
 export async function GET(request: NextRequest): Promise<NextResponse> {
 	try {
 		const searchParams = request.nextUrl.searchParams;
-		const query: string = searchParams.get("query") || "";
+		const query: string = searchParams.get("q") || "";
 
 		const products: Product[] = await getProductsBySearch(query);
 		return NextResponse.json({ success: true, data: products });
