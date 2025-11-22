@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import AddToCartButton from "../../cart/components/AddToCartButton";
 import type { Product } from "../schemas/product.schema";
 
 interface ProductPageLayoutProps {
@@ -99,12 +100,7 @@ export default function ProductPageLayout({ product }: ProductPageLayoutProps) {
 
 					{/* ACTION BUTTONS */}
 					<div className="flex flex-col gap-4 mt-4 md:flex-row">
-						<Button
-							size="lg"
-							className="w-full bg-primary text-primary-foreground px-6 py-2 rounded-md md:flex-1"
-						>
-							Add to Cart
-						</Button>
+						<AddToCartButton product={product} />
 						<Button
 							variant="outline"
 							size="lg"
