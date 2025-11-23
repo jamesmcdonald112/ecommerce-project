@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import type { Product } from "../../products/schemas/product.schema";
 import { useCart } from "../context/CartContext";
@@ -13,6 +14,7 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
 
 	function handleClick() {
 		addItem(product.slug);
+		toast.success(`${product.title} added to cart`);
 	}
 
 	return (
