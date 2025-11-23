@@ -1,8 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { fetchCartProducts } from "../features/cart/api/fetchCartProducts";
 import DisplayProduct from "../features/cart/components/DisplayProduct";
 import { useCart } from "../features/cart/context/CartContext";
+import { mergeCartItems } from "../features/cart/lib/mergeCartItems";
 import type { Product } from "../features/products/schemas/product.schema";
 
 export default function CartPage() {
@@ -26,13 +30,7 @@ export default function CartPage() {
 			const slugs = entries.map(([slug]) => slug);
 
 			// Fetch product data
-			const results = await Promise.all(
-				slugs.map(async (slug) => {
-					const res = await fetch(`/api/products/${slug}`);
-					const json = await res.json();
-					return json.data;
-				}),
-			);
+			const results = await fetchCartProducts(slugs);
 
 			setProducts(results);
 		}
@@ -51,12 +49,32 @@ export default function CartPage() {
 
 	const totalCount = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
 
-	const entries = Object.entries(cart);
+	const merged = mergeCartItems(cart, products);
 
-	const merged = entries.map(([slug, quantity]) => {
-		const product = products.find((p) => p.slug === slug);
-		return { slug, quantity, product };
-	});
+	// --- EMPTY CART STATE ---
+	if (merged.length === 0) {
+		return (
+			<div className="container mx-auto px-4 py-10 text-center">
+				<h1 className="text-2xl font-semibold mb-4">Your cart is empty</h1>
+
+				<p className="text-muted-foreground mb-6">
+					Looks like you haven’t added anything yet.
+				</p>
+
+				<a
+					href="/products"
+					className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-md hover:bg-primary/90 transition"
+				>
+					Continue Shopping
+				</a>
+			</div>
+		);
+	}
+
+	const totalPrice = merged.reduce((sum, item) => {
+		if (!item.product) return sum;
+		return sum + item.product.price * item.quantity;
+	}, 0);
 
 	return (
 		<div>
@@ -71,6 +89,24 @@ export default function CartPage() {
 					quantity={item.quantity}
 				/>
 			))}
+
+			<div className="mt-6 p-4 border-t flex justify-between items-center">
+				<p className="text-lg font-semibold">Total Price</p>
+				<p className="text-xl font-bold">€{totalPrice.toFixed(2)}</p>
+			</div>
+
+			<div className="flex gap-4 mt-6">
+				<Button asChild variant="secondary">
+					<Link href="/products">Continue Shopping</Link>
+				</Button>
+
+				<Button
+					disabled
+					className="bg-muted text-muted-foreground px-6 py-3 rounded-md cursor-not-allowed"
+				>
+					Checkout (Coming Soon)
+				</Button>
+			</div>
 		</div>
 	);
 }
