@@ -2,15 +2,17 @@
 
 import { Button } from "@/components/ui/button";
 import type { Product } from "../../products/schemas/product.schema";
-import { addToCart } from "../libs/addToCart";
+import { useCart } from "../context/CartContext";
 
 interface AddToCartButtonProps {
 	product: Product;
 }
 
 export default function AddToCartButton({ product }: AddToCartButtonProps) {
+	const { addItem } = useCart();
+
 	function handleClick() {
-		addToCart(product);
+		addItem(product.slug);
 	}
 
 	return (

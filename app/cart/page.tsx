@@ -2,26 +2,27 @@
 
 import { useEffect, useState } from "react";
 import DisplayProduct from "../features/cart/components/DisplayProduct";
-import { getFromLocalStorage } from "../features/cart/utils/cart-storage";
+import { useCart } from "../features/cart/context/CartContext";
 import type { Product } from "../features/products/schemas/product.schema";
 
 export default function CartPage() {
-	const [cart, setCart] = useState<Record<string, number> | null>(null);
+	const { cart } = useCart();
 	const [products, setProducts] = useState<Product[]>([]);
+	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
-		async function loadCartAndProducts() {
-			// Load cart
-			const stored = getFromLocalStorage<Record<string, number>>("cart");
-			setCart(stored);
+		setMounted(true);
+	}, []);
 
-			if (!stored) {
+	useEffect(() => {
+		async function loadProducts() {
+			if (!cart || Object.keys(cart).length === 0) {
 				setProducts([]);
 				return;
 			}
 
 			// Convert to entries + slugs
-			const entries = Object.entries(stored);
+			const entries = Object.entries(cart);
 			const slugs = entries.map(([slug]) => slug);
 
 			// Fetch product data
@@ -36,14 +37,21 @@ export default function CartPage() {
 			setProducts(results);
 		}
 
-		loadCartAndProducts();
-	}, []);
+		loadProducts();
+	}, [cart]);
 
-	const totalCount = cart
-		? Object.values(cart).reduce((sum, qty) => sum + qty, 0)
-		: 0;
+	if (!mounted) {
+		return (
+			<div>
+				<h1>This is my cart</h1>
+				<p>Total items: 0</p>
+			</div>
+		);
+	}
 
-	const entries = Object.entries(cart ?? {});
+	const totalCount = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+
+	const entries = Object.entries(cart);
 
 	const merged = entries.map(([slug, quantity]) => {
 		const product = products.find((p) => p.slug === slug);
