@@ -13,8 +13,8 @@ export async function storeProductEmbeddings(
 		// Connect to Mongo (cached connection)
 		await dbConnect();
 
-		// Build one long text string from title/description/specs/reviews
-		const fullText: string = buildProductText(product);
+		const cleanProduct = JSON.parse(JSON.stringify(product));
+		const fullText: string = buildProductText(cleanProduct);
 
 		// Split into char chunks
 		const chunks: { text: string }[] = chunkText(fullText);
