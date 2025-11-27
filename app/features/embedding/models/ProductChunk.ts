@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { type InferSchemaType, Schema } from "mongoose";
 
 const ProductChunkSchema = new Schema(
 	{
@@ -23,6 +23,12 @@ const ProductChunkSchema = new Schema(
 		},
 	},
 );
+
+export type ProductChunkDocument = InferSchemaType<
+	typeof ProductChunkSchema
+> & {
+	_id: mongoose.Types.ObjectId;
+};
 
 export default mongoose.models.ProductChunk ||
 	mongoose.model("ProductChunk", ProductChunkSchema);

@@ -11,7 +11,8 @@
 		"check": "biome check .",
 		"tidy": "biome check . --write",
 		"commit": "commit",
-		"t": "tsx --env-file=.env app/features/embedding/textExamples.ts"
+		"t": "tsx --env-file=.env app/features/embedding/textExamples.ts",
+		"rebuild": "tsx --env-file=.env app/features/embedding/scripts/rebuildAllEmbeddings.ts"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^5.2.2",
