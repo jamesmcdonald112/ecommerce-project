@@ -12,6 +12,8 @@ type VectorSearchResult = {
 	score: number;
 };
 
+const MIN_SCORE = 0.63;
+
 export async function GET(req: NextRequest) {
 	try {
 		const searchParams = req.nextUrl.searchParams;
@@ -25,7 +27,6 @@ export async function GET(req: NextRequest) {
 		}
 
 		await dbConnect();
-
 		const queryEmbedding = await generateEmbedding(q);
 
 		const results = (await ProductChunk.aggregate([
@@ -48,7 +49,11 @@ export async function GET(req: NextRequest) {
 			},
 		])) as VectorSearchResult[];
 
-		const productIds = [...new Set(results.map((r) => r.productId.toString()))];
+		const filtered = results.filter((r) => r.score >= MIN_SCORE);
+
+		const productIds = [
+			...new Set(filtered.map((r) => r.productId.toString())),
+		];
 
 		if (productIds.length === 0) {
 			return NextResponse.json({

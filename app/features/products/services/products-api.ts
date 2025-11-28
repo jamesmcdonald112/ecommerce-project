@@ -32,7 +32,7 @@ export const productsApi = {
 		return {
 			success: json.success,
 			data: json.data.products,
-			message: json.error || undefined
+			message: json.error || undefined,
 		};
 	},
 
