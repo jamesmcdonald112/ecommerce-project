@@ -6,6 +6,7 @@ interface SearchBarProps {
 	value: string;
 	onChange: (query: string) => void;
 	onSearch: () => void;
+	placeholder?: string;
 	className?: string;
 }
 export default function SearchBar({
@@ -13,14 +14,18 @@ export default function SearchBar({
 	onChange,
 	onSearch,
 	className,
+	placeholder,
 }: SearchBarProps) {
 	return (
 		<div className={cn("flex gap-2 w-full max-w-sm", className)}>
 			<Input
-				placeholder="Search Products..."
+				placeholder={placeholder}
 				className="w-full"
 				value={value}
 				onChange={(e) => onChange(e.target.value)}
+				onKeyDown={(e) => {
+					if (e.key === "Enter") onSearch();
+				}}
 			/>
 			<Button type="button" onClick={onSearch}>
 				Search

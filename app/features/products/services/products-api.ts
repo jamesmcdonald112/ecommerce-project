@@ -20,7 +20,7 @@ export const productsApi = {
 	},
 
 	async search(query: string): Promise<ApiResult<Product[]>> {
-		const url = `${BASE_URL}?q=${encodeURIComponent(query)}`;
+		const url = `/api/search?q=${encodeURIComponent(query)}`;
 
 		const res = await fetch(url, { method: "GET" });
 
@@ -28,7 +28,12 @@ export const productsApi = {
 			return { success: false, data: [], message: "Search failed" };
 		}
 
-		return res.json();
+		const json = await res.json();
+		return {
+			success: json.success,
+			data: json.data.products,
+			message: json.error || undefined
+		};
 	},
 
 	async getOne(slug: string): Promise<ApiResult<Product>> {
