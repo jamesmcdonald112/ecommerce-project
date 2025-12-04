@@ -24,7 +24,6 @@ export async function generateEmbedding(text: string): Promise<number[]> {
 	} catch (err: unknown) {
 		console.error("Embedding generation failed:", err);
 
-		// If this is an Error you explicitly threw  keep it
 		if (err instanceof Error) {
 			throw err;
 		}
