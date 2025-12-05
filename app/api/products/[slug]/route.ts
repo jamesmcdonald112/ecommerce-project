@@ -7,8 +7,10 @@ import {
 	BadRequestError,
 	NotFoundError,
 } from "@/app/features/products/errors/errors";
-import { updateProductSchema } from "@/app/features/products/schemas/product.schema";
-import type { Product } from "@/app/features/products/types/product";
+import {
+	type Product,
+	updateProductSchema,
+} from "@/app/features/products/schemas/product.schema";
 
 interface ProductRouteParams {
 	params: Promise<{ slug: string }>;

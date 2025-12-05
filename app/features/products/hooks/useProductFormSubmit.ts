@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import type { ProductFormData } from "@/app/features/products/schemas/product.schema";
 import { createProduct } from "@/app/features/products/services/product-api";
 import { formatProductPayload } from "@/app/features/products/utils/format-product-payload";
-import type { CreateProductPayload } from "../types/product-payloads";
+import type { CreateProductPayload } from "@/app/types/product";
 
 /**
  * Custom hook for handling product form submission

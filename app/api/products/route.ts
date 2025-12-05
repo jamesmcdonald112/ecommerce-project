@@ -3,8 +3,10 @@ import { type NextRequest, NextResponse } from "next/server";
 import z, { ZodError } from "zod";
 import { createProduct } from "@/app/features/products/api/createProduct";
 import { getProductsBySearch } from "@/app/features/products/api/getProducts";
-import { productSchema } from "@/app/features/products/schemas/product.schema";
-import type { Product } from "@/app/features/products/types/product";
+import {
+	type Product,
+	productSchema,
+} from "@/app/features/products/schemas/product.schema";
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
 	try {

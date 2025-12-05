@@ -1,10 +1,10 @@
 import type mongoose from "mongoose";
 import { type NextRequest, NextResponse } from "next/server";
 import ProductChunk from "@/app/features/embedding/models/ProductChunk";
-import type { ProductWithId } from "@/app/features/embedding/types.ts/ProductWithId";
 import { generateEmbedding } from "@/app/features/embedding/utils/generateEmbedding";
 import { ProductModel } from "@/app/features/products/models/Product";
 import dbConnect from "@/app/lib/mongodb";
+import type { ProductWithId } from "@/app/types/product";
 
 type VectorSearchResult = {
 	productId: mongoose.Types.ObjectId;

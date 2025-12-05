@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import AddToCartButton from "../../cart/components/AddToCartButton";
 import type { Product } from "../schemas/product.schema";
+import { ProductQnA } from "./ProductQna";
 
 interface ProductPageLayoutProps {
 	product: Product;
@@ -110,13 +111,8 @@ export default function ProductPageLayout({ product }: ProductPageLayoutProps) {
 						</Button>
 					</div>
 
-					{/* AI / Q&A Placeholder */}
-					<div className="mt-10 p-6 border rounded-lg bg-muted">
-						<p className="text-muted-foreground text-sm">
-							This area will contain an AI‑powered Q&A assistant that can answer
-							questions about the product using RAG and semantic search.
-						</p>
-					</div>
+					{/* AI / Q&A */}
+					<ProductQnA productId={product._id.toString()} />
 				</div>
 			</div>
 		</div>

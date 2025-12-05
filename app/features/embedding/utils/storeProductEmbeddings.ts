@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import dbConnect from "@/app/lib/mongodb";
+import type { ProductWithId } from "@/app/types/product";
 import ProductChunk from "../models/ProductChunk";
-import type { ProductWithId } from "../types.ts/ProductWithId";
 import { buildProductText } from "../utils/buildProductText";
 import { chunkText } from "../utils/chunkText";
 import { generateEmbedding } from "../utils/generateEmbedding";
