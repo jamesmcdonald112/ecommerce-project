@@ -1,5 +1,5 @@
 import type { HydratedDocument } from "mongoose";
-import type { Product } from "../types/product";
+import type { Product } from "@/app/types/product";
 import { getProductBySlug } from "./getProductBySlug";
 import { updateProduct } from "./updateProduct";
 
