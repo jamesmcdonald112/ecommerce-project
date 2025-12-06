@@ -46,9 +46,14 @@ export function ProductQnA({ productId }: ProductQnAProps) {
 			}
 
 			setAnswer(data.answer ?? null);
-		} catch (err: any) {
-			console.error(err);
-			setError(err.message || "Failed to get an answer.");
+		} catch (err: unknown) {
+			if (err instanceof Error) {
+				console.error(err);
+				setError(err.message);
+			} else {
+				console.error("Unknown error", err);
+				setError("Failed to get an answer.");
+			}
 		} finally {
 			setLoading(false);
 		}
