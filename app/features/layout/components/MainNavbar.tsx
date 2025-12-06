@@ -29,7 +29,7 @@ export function MainNavbar() {
 						</NavigationMenuItem>
 
 						<NavigationMenuItem>
-							<NavigationMenuLink href="/about">About</NavigationMenuLink>
+							<NavigationMenuLink href="/">About</NavigationMenuLink>
 						</NavigationMenuItem>
 					</NavigationMenuList>
 				</NavigationMenu>
