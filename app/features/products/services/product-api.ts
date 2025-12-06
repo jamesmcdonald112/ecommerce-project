@@ -6,7 +6,7 @@
 import type {
 	CreateProductPayload,
 	UpdateProductPayload,
-} from "../types/product-payloads";
+} from "@/app/types/product";
 
 /**
  * Creates a new product via API

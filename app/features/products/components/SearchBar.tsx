@@ -17,17 +17,26 @@ export default function SearchBar({
 	placeholder,
 }: SearchBarProps) {
 	return (
-		<div className={cn("flex gap-2 w-full max-w-sm", className)}>
+		<div
+			className={cn(
+				"flex w-full max-w-2xl items-center gap-3 rounded-full border border-border bg-card px-3 py-2 shadow-sm",
+				className,
+			)}
+		>
 			<Input
 				placeholder={placeholder}
-				className="w-full"
+				className="w-full border-none bg-transparent text-base focus-visible:ring-0 focus-visible:ring-offset-0"
 				value={value}
 				onChange={(e) => onChange(e.target.value)}
 				onKeyDown={(e) => {
 					if (e.key === "Enter") onSearch();
 				}}
 			/>
-			<Button type="button" onClick={onSearch}>
+			<Button
+				type="button"
+				onClick={onSearch}
+				className="rounded-full px-5 text-sm font-semibold"
+			>
 				Search
 			</Button>
 		</div>

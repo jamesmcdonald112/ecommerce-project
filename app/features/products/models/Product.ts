@@ -1,6 +1,6 @@
 import mongoose, { model, Schema } from "mongoose";
-import type { Product } from "@/app/features/products/types/product";
 import { PRODUCT_LIMITS } from "@/config/product-field-limits";
+import type { Product } from "../schemas/product.schema";
 
 const ProductSchema = new Schema<Product>(
 	{

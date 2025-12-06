@@ -1,13 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import {
-	Card,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
 
 interface ProductCardProps {
 	title: string;
@@ -25,35 +17,26 @@ export default function ProductCard({
 	slug,
 }: ProductCardProps) {
 	return (
-		<Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
-			{/* IMAGE */}
-			<div className="px-6">
-				<div className="relative w-full aspect-square overflow-hidden bg-muted rounded-lg">
-					<Image
-						fill
-						src={image}
-						alt={title}
-						className="object-cover hover:scale-105 transition-transform duration-300"
-						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-					/>
-				</div>
+		<Link
+			href={`/products/${slug}`}
+			className="group block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+		>
+			<div className="relative w-full overflow-hidden rounded-lg bg-muted transition group-hover:opacity-90 aspect-square xl:aspect-7/8">
+				<Image
+					fill
+					src={image}
+					alt={title}
+					className="object-cover transition duration-300 group-hover:scale-105"
+					sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+				/>
 			</div>
-
-			{/* TEXT */}
-			<CardHeader>
-				<CardTitle className="line-clamp-2">{title}</CardTitle>
-				<CardDescription className="line-clamp-2">
-					{shortDescription}
-				</CardDescription>
-			</CardHeader>
-
-			{/* FOOTER */}
-			<CardFooter className="flex items-center justify-between pt-0">
-				<span className="text-lg font-bold">€{price.toFixed(2)}</span>
-				<Link href={`/products/${slug}`}>
-					<Button variant="default">View</Button>
-				</Link>
-			</CardFooter>
-		</Card>
+			<h3 className="mt-4 text-sm text-foreground line-clamp-2">{title}</h3>
+			<p className="mt-1 text-sm text-muted-foreground line-clamp-2">
+				{shortDescription}
+			</p>
+			<p className="mt-1 text-lg font-medium text-foreground">
+				€{price.toFixed(2)}
+			</p>
+		</Link>
 	);
 }

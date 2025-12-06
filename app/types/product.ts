@@ -1,4 +1,11 @@
-import type { Product } from "./product";
+// Import Product from the schema (single source of truth)
+import type { Product as SchemaProduct } from "../features/products/schemas/product.schema";
+
+// Re-export so the rest of the app can import Product from here
+export type Product = SchemaProduct;
+
+// Product with MongoDB _id
+export type ProductWithId = Product & { _id: string };
 
 // Shape expected when creating a product via the API
 export interface CreateProductPayload {
@@ -12,5 +19,5 @@ export interface CreateProductPayload {
 	images: Product["images"];
 }
 
-// For updates, we usually want partial (not everything required)
+// Partial version for updates
 export type UpdateProductPayload = Partial<CreateProductPayload>;
