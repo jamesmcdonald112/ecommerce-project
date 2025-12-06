@@ -7,7 +7,7 @@ export default async function ProductPage({
 }: {
 	params: Promise<{ slug: string }>;
 }) {
-	const base = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+	const base = process.env.NEXT_PUBLIC_BASE_URL;
 	const { slug } = await params;
 	const res = await fetch(`${base}/api/products/${slug}`);
 	const result = await res.json();
