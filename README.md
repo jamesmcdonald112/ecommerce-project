@@ -2,7 +2,7 @@
 
 # AI-Powered E-Commerce Platform
 
-[Live demo](https://ecommerce-project-m141alyn3-james-mcdonalds-projects-1ae069d6.vercel.app/)
+[Live demo](https://ecommerce-project-two-xi.vercel.app/)
 
 Full-stack AI e-commerce demo with semantic search, per-product RAG Q&A, and a complete admin + cart flow.
 
