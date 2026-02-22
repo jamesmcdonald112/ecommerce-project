@@ -21,15 +21,21 @@ export function MainNavbar() {
 				<NavigationMenu>
 					<NavigationMenuList>
 						<NavigationMenuItem>
+							<NavigationMenuLink href="/">
+								Commercial Case Study
+							</NavigationMenuLink>
+						</NavigationMenuItem>
+
+						<NavigationMenuItem>
+							<NavigationMenuLink href="/techang">Technical Details</NavigationMenuLink>
+						</NavigationMenuItem>
+
+						<NavigationMenuItem>
 							<NavigationMenuLink href="/products">Products</NavigationMenuLink>
 						</NavigationMenuItem>
 
 						<NavigationMenuItem>
 							<NavigationMenuLink href="/cart">Cart</NavigationMenuLink>
-						</NavigationMenuItem>
-
-						<NavigationMenuItem>
-							<NavigationMenuLink href="/">About</NavigationMenuLink>
 						</NavigationMenuItem>
 					</NavigationMenuList>
 				</NavigationMenu>
